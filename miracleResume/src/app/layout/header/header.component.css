@@ -1,0 +1,40 @@
+.header {
+background-color: #fff;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 45px;
+    height: 10vh;
+}
+
+.header h1 {
+    cursor: pointer;
+}
+
+.nav a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: block;
+    transition: all 0.3s ease-out;
+}
+
+.nav a:hover {
+    color: #c5cae9;
+    transform: rotate(20deg);
+}
+
+.nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav li {
+    margin-left: 20px;
+}
+.img{
+    border-radius: 50%;
+
+}

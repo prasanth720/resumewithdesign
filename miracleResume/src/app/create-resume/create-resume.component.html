@@ -1,0 +1,234 @@
+<p-card [style]="{'height': 'auto',
+            'margin': '50px','margin-bottom':'70px'}">
+    <div style="width: 100%;height:auto">
+        <form [formGroup]="reactiveForm" class="form" style="padding: 20px;">
+            <div class="grid p-fluid">
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12 grid">
+                    <h2>Profile</h2>
+                </div>
+                <div class="p-col-12 p-md-3 p-sm-12 p-lg-3">
+                    <label for="integeronly"> <b> First Name<span style="color: red;">*</span></b></label>
+                    <input type="text"  pInputText class="p-inputtext-sm" id="integeronly" formControlName="firstName"
+                        placeholder="First Name">
+                    <div *ngIf="reactiveForm.controls.firstName.touched && reactiveForm.controls.firstName.invalid"
+                        style="color: red;">
+                        First Name is required
+                    </div>
+                    <div *ngIf="reactiveForm.controls.firstName.errors?.pattern" style="color: red;">Enter only
+                        alphabets.</div>
+
+                </div>
+                <div class="p-col-12 p-md-3 p-sm-12 p-lg-3">
+                    <label for="minmaxfraction"><b> Last Name<span style="color: red;">*</span></b></label>
+                    <input type="text"  pInputText class="p-inputtext-sm" formControlName="lastName"
+                        placeholder="Last Name">
+                    <div *ngIf="reactiveForm.controls.lastName.touched && reactiveForm.controls.lastName.invalid"
+                        style="color: red;">
+                        Last name is required
+                    </div>
+                    <div *ngIf="reactiveForm.controls.lastName.errors?.pattern" style="color: red;">Enter only
+                        alphabets.</div>
+
+
+
+                </div>
+                <div class="p-col-12 p-md-6 p-sm-12 p-lg-6">
+                    <label for="integeronly"><b> Education<span style="color: red;">*</span></b></label>
+                    <input type="text" pInputText class="p-inputtext-sm" id="integeronly" formControlName="education"
+                        placeholder="Education">
+                    <div *ngIf="reactiveForm.controls.education.touched && reactiveForm.controls.education.invalid"
+                        style="color: red;">
+                        Education is required
+                    </div>
+                    <div *ngIf="reactiveForm.controls.education.errors?.pattern" style="color: red;">Enter only
+                        alphabets.</div>
+
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12">
+
+                    <div formArrayName="professionalsummary">
+                        <div *ngFor="let m of getAllPS().controls;let i=index">
+                            <div class="d-flex" [formGroupName]="i">
+
+                                <label for=""><b>{{i+1}} Professional Summary</b></label>
+                                <div style="display:flex ;">
+                                    <div class="p-col-12 p-md-10 p-sm-10 p-lg-10">
+                                        <textarea formControlName="ps" [rows]="2" [cols]="10"
+                                            placeholder="Professional Summary" pInputTextarea
+                                            autoResize="autoResize"></textarea>
+                                    </div>
+                                    <div class="p-col-12 p-md-1 p-sm-2 p-lg-1">
+                                        <button (click)="professionalsummary_del(i)" [style]="{'width':'40px'}" pButton
+                                            label="x"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12" style="display: flex;justify-content: end;">
+                    <div>
+                        <button pButton label="Add Point" (click)="professionalsummary_add()"></button>
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12">
+                    <h2>Technical Skills</h2>
+                </div>
+                <div class="p-col-12 p-md-6 p-sm-12 p-lg-6">
+                    <label for="integeronly"><b> Langauges<span style="color: red;">*</span></b></label>
+                    <p-multiSelect formControlName="languages" [options]="languages" placeholder="Select Langauges"
+                        optionLabel="name" optionValue="code">
+                    </p-multiSelect>
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-6">
+                    <label for="integeronly"><b> Webserves & Appserves<span style="color: red;">*</span></b></label>
+                    <input type="text" pInputText class="p-inputtext-sm" id="integeronly"
+                        formControlName="webserves_appserves" placeholder="Webserves & Appserves">
+                    <div *ngIf="reactiveForm.controls.webserves_appserves.touched && reactiveForm.controls.webserves_appserves.invalid"
+                        style="color: red;">
+                        Webserves & Appserves is required
+                    </div>
+                    <div *ngIf="reactiveForm.controls.webserves_appserves.errors?.pattern" style="color: red;">Enter
+                        only
+                        alphabets.</div>
+
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-6">
+                    <label for="integeronly"><b> Development_tools<span style="color: red;">*</span></b></label>
+                    <input type="text" pInputText class="p-inputtext-sm" id="integeronly"
+                        formControlName="development_tools" placeholder=" Development_tools">
+                    <div *ngIf="reactiveForm.controls.development_tools.touched && reactiveForm.controls.development_tools.invalid"
+                        style="color: red;">
+                        Development_tools is required
+                    </div>
+                    <div *ngIf="reactiveForm.controls.development_tools.errors?.pattern" style="color: red;">Enter
+                        only
+                        alphabets.</div>
+
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-6">
+                    <label for="integeronly"><b>Operating System<span style="color: red;">*</span></b></label>
+                    <input type="text" pInputText class="p-inputtext-sm" id="integeronly"
+                        formControlName="opearting_system" placeholder="Operating System">
+                    <div *ngIf="reactiveForm.controls.opearting_system.touched && reactiveForm.controls.opearting_system.invalid"
+                        style="color: red;">
+                        Operating System is required
+                    </div>
+                    <div *ngIf="reactiveForm.controls.opearting_system.errors?.pattern" style="color: red;">Enter
+                        only
+                        alphabets.</div>
+
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-6">
+                    <label for="integeronly"><b> Database<span style="color: red;">*</span></b></label>
+                    <input type="text" pInputText class="p-inputtext-sm" id="integeronly" formControlName="database"
+                        placeholder=" Database">
+                    <div *ngIf="reactiveForm.controls.database.touched && reactiveForm.controls.database.invalid"
+                        style="color: red;">
+                        Database is required
+                    </div>
+                    <div *ngIf="reactiveForm.controls.database.errors?.pattern" style="color: red;">Enter only
+                        alphabets.</div>
+
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-6">
+                    <label for="integeronly"><b> Service Oriented Archit<span style="color: red;">*</span></b></label>
+                    <input type="text" pInputText class="p-inputtext-sm" id="integeronly"
+                        formControlName="service_oriented_archit" placeholder="Service Oriented Archit">
+                    <div *ngIf="reactiveForm.controls.service_oriented_archit.touched && reactiveForm.controls.service_oriented_archit.invalid"
+                        style="color: red;">
+                        Service Oriented Archit is required
+                    </div>
+                    <div *ngIf="reactiveForm.controls.service_oriented_archit.errors?.pattern" style="color: red;">
+                        Enter
+                        only
+                        alphabets.</div>
+
+                </div>
+                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12">
+                    <h2>Professional Experience</h2>
+                </div>
+                <div formArrayName="details">
+                    <div *ngFor="let detail  of details().controls;let i=index">
+                        <div [formGroupName]="i">
+                            <div class="p-grid p-fluid">
+                                <div class="p-col-12 p-md-6 p-sm-12 p-lg-6">
+                                    <label for="integeronly"><b> From Date</b></label>
+                                    <p-calendar formControlName="from_date" [monthNavigator]="true" [showIcon]="true"
+                                        placeholder="yyyy-mm-dd" dateFormat="yy-mm-dd" inputId="icon"></p-calendar>
+
+                                </div>
+                                <div class="p-col-12 p-md-6 p-sm-12 p-lg-6">
+                                    <label for="integeronly"><b> To Date</b></label>
+                                    <p-calendar formControlName="to_date" [monthNavigator]="true" [showIcon]="true"
+                                        placeholder="yyyy-mm-dd" dateFormat="yy-mm-dd" inputId="icon"></p-calendar>
+
+                                </div>
+                                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12">
+                                    <label for="integeronly"><b> Project Name</b></label>
+                                    <input type="text" pInputText class="p-inputtext-sm" id="integeronly"
+                                        formControlName="project_name" placeholder="Project Name">
+
+                                </div>
+                                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12">
+                                    <label for=""><b> Project Description</b></label>
+                                    <textarea [rows]="2" placeholder=" Project Description" [cols]="20"
+                                        formControlName="project_description" pInputTextarea
+                                        autoResize="autoResize"></textarea>
+                                </div>
+                                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12">
+                                    <div formArrayName="responsiblity">
+                                        <div *ngFor="let m of respo(i).controls;let ind=index">
+                                            <div class="d-flex" [formGroupName]="ind">
+                                                <b>{{ind+1}} Responsibility</b>
+                                                <div style="display:flex ;">
+                                                    <div class="p-col-12 p-md-10 p-sm-10 p-lg-10">
+                                                        <textarea formControlName="responsibility" [rows]="2"
+                                                            [cols]="10" placeholder="Responsiblity" pInputTextarea
+                                                            autoResize="autoResize"></textarea>
+                                                    </div>
+                                                    <div class="p-col-12 p-md-1 p-sm-2 p-lg-1">
+                                                        <button (click)="removeresp(i,ind)" [style]="{'width':'40px'}"
+                                                            pButton label="x"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="p-col-12 p-md-12 p-sm-12 p-lg-12"
+                                    style="display: flex;justify-content: end;">
+                                    <div>
+                                        <button pButton label="Add Point" (click)="addrespo(i)"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-12 p-sm-12 p-lg-12" style="display: flex;justify-content: center;">
+                            <div>
+                                <button pButton [style]="{'width':'100%'}" class="p-button-raised p-button-danger"
+                                    label="Delete Project -" (click)="removeproje(ind)"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-12 p-sm-12 p-lg-12" style="display: flex;justify-content: center;">
+                        <div>
+                            <button pButton label="Add Project +" [style]="{'width':'100%'}"
+                                (click)="addproject()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="p-col-12 p-md-12 p-sm-12 p-lg-12" style="display: flex;justify-content: end;">
+            <div>
+                <button (click)="submit()"  pButton
+                    label="Generate Resume"></button>
+            </div>
+        </div>
+    </div>
+</p-card>

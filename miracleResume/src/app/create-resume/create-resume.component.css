@@ -1,0 +1,15 @@
+::ng-deep p-card p-component{
+        height: 77vh;
+            margin: 20px;
+}
+.stylesresume{
+    /* display: flex; */
+}
+p-card-content{
+    display: flex;
+}
+@media only screen and (max-width: 600px) {
+::ng-deep .p-card {
+        padding: 20px;
+    }
+}

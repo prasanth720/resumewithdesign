@@ -1,0 +1,23 @@
+<!-- header template -->
+<div class="header">
+    <div class="header__content-wrapper">
+        <!-- <div class="header__filename">
+            <span>{{ fileName }}</span>
+        </div> -->
+        <!-- <div class="header__page-indicator">
+            <span class="header__page-indicator-current">{{ currentPage }}</span>
+            <span class="header__page-indicator-separator">/</span>
+            <span class="header__page-indicator-total">{{ totalPages }}</span>
+        </div> -->
+        <div class="header__pdf-controls">
+            <button class="header__btn" (click)="zoom('increment')" pButton [disabled]="zoomAmt >= zoomMax" label="Zoom In">
+          
+            </button>
+            <button class="header__btn" (click)="zoom('decrement')" pButton [disabled]="zoomMin >= zoomAmt" label="Zoom Out">
+          
+            </button>
+            <!-- <button class="header__btn" (click)="onPrint($event)">print</button> -->
+            <button class="header__btn" (click)="onDownload($event)" pButton label="Download"></button>
+        </div>
+    </div>
+</div>
